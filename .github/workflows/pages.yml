@@ -25,6 +25,7 @@ jobs:
           node --check dist/app.js
           node --check dist/data.js
           node --check dist/lore.js
+          node --check dist/rituals.js
           node verify.cjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

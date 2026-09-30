@@ -53,6 +53,12 @@
     loreSection.className='pathway-lore';
     loreSection.setAttribute('aria-labelledby','lore-title');
     loreSection.innerHTML=`<div class="lore-heading"><div><p class="section-label">灰雾档案 / ${String(p.number).padStart(2,'0')}</p><h2 id="lore-title">${p.name}的来历</h2></div><span class="lore-seal" aria-hidden="true">${p.symbol}</span></div><p class="lore-domain">${lore.domain}</p><p class="lore-origin">${lore.origin}</p><details class="lore-history" open><summary>关联神明与历史 <span>含第一部人物身份剧透</span></summary><div class="lore-history-content"><h3>${lore.figure}</h3><p class="lore-identity">${lore.identity}</p><p>${lore.history}</p></div></details><figure class="lore-verse"><figcaption>属于这条途径的一句话</figcaption><blockquote>${lore.verse}</blockquote><p>同人原创寄语 · 非原作引文或角色原话</p></figure><p class="lore-note">背景按《诡秘之主》第一部设定概述；历史神位与代表人物不等同于现任唯一真神。</p>`;
+    const ritual=getApotheosisRitual(p.id);
+    const ritualSection=document.createElement('section');
+    ritualSection.className='apotheosis-ritual';
+    ritualSection.setAttribute('aria-labelledby','ritual-title');
+    ritualSection.innerHTML=`<div class="ritual-heading"><h3 id="ritual-title">序列 0 · 成神仪式</h3><span class="ritual-status">${ritual.status==='summary'?'设定摘要':'待核实'}</span></div><p class="ritual-spoiler">含后期设定剧透</p><h4>${ritual.title}</h4>${ritual.steps.length?`<ol>${ritual.steps.map(step=>`<li>${step}</li>`).join('')}</ol>`:''}<p class="ritual-note">${ritual.note}</p><p class="ritual-source">${ritual.status==='summary'?'参照《诡秘之主》相关设定整理，非逐字引文；本版尚未完成逐章核验。仪式摘要不包含完整魔药配方及其他晋升准备。':'资料不足时保留空缺，不以原创仪式替代原作设定。'}</p>`;
+    loreSection.querySelector('.lore-verse').before(ritualSection);
     app.querySelector('.result-end').before(loreSection);
     app.querySelector('#restart').addEventListener('click',start);
     focusTitle();
